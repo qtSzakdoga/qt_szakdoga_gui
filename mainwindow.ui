@@ -590,7 +590,7 @@
    <property name="minimumSize">
     <size>
      <width>279</width>
-     <height>445</height>
+     <height>465</height>
     </size>
    </property>
    <property name="windowTitle">
@@ -930,8 +930,22 @@
       </widget>
      </item>
      <item>
-      <widget class="QWidget" name="startColorWidget" native="true">
-       <layout class="QVBoxLayout" name="verticalLayout_7"/>
+      <widget class="QWidget" name="preferDrawingPointsWidget" native="true">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>80</height>
+        </size>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QCheckBox" name="preferDrawingPointsCheckBox">
+          <property name="text">
+           <string>Triangles</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </item>
      <item>
@@ -1060,6 +1074,7 @@
     <signal>solidColorChanged(QColor)</signal>
     <signal>smoothnessChanged(int)</signal>
     <signal>colorModeChanged(ColorMode)</signal>
+    <signal>drawingTrianglesChanged(bool)</signal>
     <slot>cameraSetXRotation(int)</slot>
     <slot>cameraSetYRotation(int)</slot>
     <slot>cameraSetDistance(int)</slot>
@@ -1076,6 +1091,7 @@
     <slot>setSolidColor(QColor)</slot>
     <slot>setSmoothness(int)</slot>
     <slot>setColorMode(ColorMode)</slot>
+    <slot>setDrawingTriangles(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -1108,7 +1124,7 @@
    <slot>cameraSetXRotation(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>125</y>
     </hint>
     <hint type="destinationlabel">
@@ -1128,7 +1144,7 @@
      <y>128</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>125</y>
     </hint>
    </hints>
@@ -1140,7 +1156,7 @@
    <slot>cameraSetXRotation(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1050</x>
+     <x>1981</x>
      <y>152</y>
     </hint>
     <hint type="destinationlabel">
@@ -1160,7 +1176,7 @@
      <y>215</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1032</x>
+     <x>1981</x>
      <y>152</y>
     </hint>
    </hints>
@@ -1172,7 +1188,7 @@
    <slot>cameraSetYRotation(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>187</y>
     </hint>
     <hint type="destinationlabel">
@@ -1192,7 +1208,7 @@
      <y>239</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>187</y>
     </hint>
    </hints>
@@ -1204,7 +1220,7 @@
    <slot>cameraSetYRotation(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1059</x>
+     <x>1981</x>
      <y>215</y>
     </hint>
     <hint type="destinationlabel">
@@ -1224,7 +1240,7 @@
      <y>269</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1050</x>
+     <x>1981</x>
      <y>215</y>
     </hint>
    </hints>
@@ -1236,7 +1252,7 @@
    <slot>cameraSetDistance(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>250</y>
     </hint>
     <hint type="destinationlabel">
@@ -1256,7 +1272,7 @@
      <y>301</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>250</y>
     </hint>
    </hints>
@@ -1268,7 +1284,7 @@
    <slot>cameraSetDistance(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1059</x>
+     <x>1981</x>
      <y>277</y>
     </hint>
     <hint type="destinationlabel">
@@ -1288,7 +1304,7 @@
      <y>330</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1053</x>
+     <x>1981</x>
      <y>277</y>
     </hint>
    </hints>
@@ -1300,7 +1316,7 @@
    <slot>cameraSetViewAngle(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>312</y>
     </hint>
     <hint type="destinationlabel">
@@ -1320,7 +1336,7 @@
      <y>358</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>312</y>
     </hint>
    </hints>
@@ -1332,7 +1348,7 @@
    <slot>cameraSetViewAngle(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1059</x>
+     <x>1981</x>
      <y>339</y>
     </hint>
     <hint type="destinationlabel">
@@ -1352,7 +1368,7 @@
      <y>383</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1036</x>
+     <x>1981</x>
      <y>339</y>
     </hint>
    </hints>
@@ -1368,7 +1384,7 @@
      <y>195</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1025</x>
+     <x>1922</x>
      <y>634</y>
     </hint>
    </hints>
@@ -1384,7 +1400,7 @@
      <y>236</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1025</x>
+     <x>1922</x>
      <y>669</y>
     </hint>
    </hints>
@@ -1396,7 +1412,7 @@
    <slot>setLightColor(QColor)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1025</x>
+     <x>1922</x>
      <y>634</y>
     </hint>
     <hint type="destinationlabel">
@@ -1412,7 +1428,7 @@
    <slot>setBackgroundColor(QColor)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1025</x>
+     <x>1922</x>
      <y>669</y>
     </hint>
     <hint type="destinationlabel">
@@ -1432,7 +1448,7 @@
      <y>284</y>
     </hint>
     <hint type="destinationlabel">
-     <x>899</x>
+     <x>1796</x>
      <y>472</y>
     </hint>
    </hints>
@@ -1444,7 +1460,7 @@
    <slot>setLightX(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>899</x>
+     <x>1796</x>
      <y>472</y>
     </hint>
     <hint type="destinationlabel">
@@ -1464,7 +1480,7 @@
      <y>309</y>
     </hint>
     <hint type="destinationlabel">
-     <x>991</x>
+     <x>1888</x>
      <y>472</y>
     </hint>
    </hints>
@@ -1476,7 +1492,7 @@
    <slot>setLightY(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>991</x>
+     <x>1888</x>
      <y>472</y>
     </hint>
     <hint type="destinationlabel">
@@ -1492,7 +1508,7 @@
    <slot>setLightZ(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>472</y>
     </hint>
     <hint type="destinationlabel">
@@ -1512,7 +1528,7 @@
      <y>320</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>472</y>
     </hint>
    </hints>
@@ -1524,7 +1540,7 @@
    <slot>setLightPower(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>543</y>
     </hint>
     <hint type="destinationlabel">
@@ -1544,7 +1560,7 @@
      <y>360</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>543</y>
     </hint>
    </hints>
@@ -1556,7 +1572,7 @@
    <slot>setLightPower(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1084</x>
+     <x>1981</x>
      <y>567</y>
     </hint>
     <hint type="destinationlabel">
@@ -1576,7 +1592,7 @@
      <y>376</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1084</x>
+     <x>1981</x>
      <y>567</y>
     </hint>
    </hints>
@@ -1604,8 +1620,8 @@
    <slot>setSpecularPower(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>263</x>
-     <y>119</y>
+     <x>259</x>
+     <y>129</y>
     </hint>
     <hint type="destinationlabel">
      <x>330</x>
@@ -1620,8 +1636,8 @@
    <slot>setSpecularPower(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>272</x>
-     <y>151</y>
+     <x>260</x>
+     <y>160</y>
     </hint>
     <hint type="destinationlabel">
      <x>338</x>
@@ -1748,8 +1764,8 @@
    <slot>setSmoothness(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>264</x>
-     <y>184</y>
+     <x>259</x>
+     <y>198</y>
     </hint>
     <hint type="destinationlabel">
      <x>314</x>
@@ -1780,8 +1796,8 @@
    <slot>setSmoothness(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>263</x>
-     <y>215</y>
+     <x>260</x>
+     <y>229</y>
     </hint>
     <hint type="destinationlabel">
      <x>325</x>
@@ -1802,6 +1818,38 @@
     <hint type="destinationlabel">
      <x>240</x>
      <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>drawingTrianglesChanged(bool)</signal>
+   <receiver>preferDrawingPointsCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>302</x>
+     <y>514</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>238</x>
+     <y>507</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>preferDrawingPointsCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setDrawingTriangles(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>257</x>
+     <y>497</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>305</x>
+     <y>497</y>
     </hint>
    </hints>
   </connection>

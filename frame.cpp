@@ -5,22 +5,48 @@
 
 Frame::Frame(QString fileName)
 {
+    velocity_data_exist=false;
+    area_data_exist=false;
+
     FrameReader freader;
 
     freader.loadFile(fileName);
 
     points=freader.getPoints();
-    velocities=freader.getVelocities();
-    QVector<float> areas=freader.getAreas();
-    indices=freader.getIndices();
 
-    for(int i =0; i<areas.size(); i++){
-        if(i%3 ==2){
-            vertexAreas.append(areas.at(i-2));
-            projectedVertexAreas.append(areas.at(i-1));
-            vertexMasses.append(areas.at(i));
+    velocity_data_exist=freader.velocityDataExist();
+    area_data_exist=freader.areaDataExist();
+
+    if(velocity_data_exist){
+        velocities=freader.getVelocities();
+    }
+
+
+    if(area_data_exist){
+        areas=freader.getAreas();
+        for(int i =0; i<areas.size(); i++){
+            if(i%3 ==2){
+                vertexAreas.append(areas.at(i-2));
+                projectedVertexAreas.append(areas.at(i-1));
+                vertexMasses.append(areas.at(i));
+            }
         }
     }
+
+    if(freader.indexDataExist()){
+        indices=freader.getIndices();
+        prefer_drawing_points=false;
+    }
+    else{
+        for(int i=0; i<points.size();i++){
+            if(i%3 == 2){
+               indices.append(i/3);
+            }
+        }
+        prefer_drawing_points=true;
+    }
+
+
 }
 
 float Frame::getMin(ColorMode mode)
@@ -63,6 +89,11 @@ float Frame::getMax(ColorMode mode)
     }
 }
 
+const QVector<float> &Frame::getAreas()
+{
+    return areas;
+}
+
 const QVector<float> &Frame::getVertexAreas()
 {
     return vertexAreas;
@@ -78,8 +109,14 @@ const QVector<float> &Frame::getVertexMasses()
     return vertexMasses;
 }
 
+bool Frame::preferDrawingPoints()
+{
+    return prefer_drawing_points;
+}
+
 void Frame::setUpColors(ColorMode mode, QVector3D startColor, QVector3D endColor, float min, float max)
 {
+
     QVector<float> weights;
     if(mode == SOLID){
         QVector<float> newAmbients;
@@ -111,15 +148,31 @@ void Frame::setUpColors(ColorMode mode, QVector3D startColor, QVector3D endColor
         return;
     }
     else if(mode == VELOCITY){
+        if(!velocity_data_exist){
+            qDebug() << "setUpFrameColors: no velocity data";
+            return;
+        }
         weights=toLengthArray(velocities);
     }
     else if(mode == VERTEX_AREA){
+        if(!area_data_exist){
+            qDebug() << "setUpFrameColors: no area data";
+            return;
+        }
         weights=vertexAreas;
     }
     else if(mode == PROJECTED_VERTEX_AREA){
+        if(!area_data_exist){
+            qDebug() << "setUpFrameColors: no area data";
+            return;
+        }
         weights=projectedVertexAreas;
     }
     else if(mode == VERTEX_MASS){
+        if(!area_data_exist){
+            qDebug() << "setUpFrameColors: no area data";
+            return;
+        }
         weights=vertexMasses;
     }
     if(weights.size() == 0)return;

@@ -84,6 +84,16 @@ void MainWindow::on_actionOpen_triggered()
 
     int framesCount = ui->glWidget->loadFrameDirectory(directoryName);
 
+
+    ui->materialColoringComboBox->setCurrentIndex(0);
+
+    ui->materialColoringComboBox->setAvailableColorModes(true,
+                                                         ui->glWidget->velocityDataExist(),
+                                                         ui->glWidget->areaDataExist()
+                                                         );
+    ui->materialColoringComboBox->setCurrentIndex(0);
+
+
     if(framesCount){
         frameIdxSpinBox->setEnabled(true);
         frameIdxSpinBox->setMinimum(0);

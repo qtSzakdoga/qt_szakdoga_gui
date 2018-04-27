@@ -23,6 +23,7 @@ uniform vec3 LightColor;
 uniform float LightPower;
 uniform float SpecularPower;
 uniform float Smoothness;
+uniform float AmbientPower;
 
 void main(){
 

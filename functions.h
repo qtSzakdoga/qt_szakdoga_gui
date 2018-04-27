@@ -25,4 +25,3 @@ enum ColorMode
 };
 
 #endif // FUNCTIONS_H
-

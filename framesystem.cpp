@@ -30,16 +30,32 @@ void FrameSystem::loadDirectory(QString directoryPath)
    frames.squeeze();
    QStringList files = getDirectoryFiles(directoryPath);
 
-   for(int i = 0 ; i< files.size(); i++){
-       Frame frame(files.at(i));
-       frames.push_back(frame);
+   if(files.size() == 0){
+       velocity_data_exist=false;
+       area_data_exist=false;
    }
+   else{
+       Frame frame(files.at(0));
+       frames.push_back(frame);
 
-   setUpFrameColors();
+       velocity_data_exist=frame.getVelocityDataExist();
+       area_data_exist=frame.getAreaDataExist();
+       prefer_drawing_points=frame.preferDrawingPoints();
+
+       for(int i = 1 ; i< files.size(); i++){
+           Frame frame(files.at(i));
+           frames.push_back(frame);
+       }
+       colorMode=SOLID;
+       if(!velocity_data_exist && colorMode==VELOCITY){
+           colorMode=SOLID;
+       }
+       if(!area_data_exist && colorMode!=VELOCITY){
+           colorMode=SOLID;
+       }
+       setUpFrameColors();
+   }
 }
-
-
-
 QVector3D FrameSystem::getPointsAvgAfterLoading()
 {
     if(frames.size() == 0){
@@ -151,16 +167,20 @@ void FrameSystem::setUpFrameColors()
                               max);
     }
 
-
 }
 
-QVector<float> FrameSystem::getPoints(int i)
+const QVector<float> &FrameSystem::getPoints(int i)
 {
     return frames[i].getPoints();
 }
-QVector<float> FrameSystem::getVelocities(int i)
+const QVector<float> &FrameSystem::getVelocities(int i)
 {
     return frames[i].getVelocities();
+}
+
+const QVector<float> &FrameSystem::getAreas(int i)
+{
+    return frames[i].getAreas();
 }
 
 const QVector<float> &FrameSystem::getVertexAreas(int i)
@@ -168,30 +188,30 @@ const QVector<float> &FrameSystem::getVertexAreas(int i)
     return frames[i].getVertexAreas();
 }
 
-QVector<float> FrameSystem::getProjectedVertexAreas(int i)
+const QVector<float> &FrameSystem::getProjectedVertexAreas(int i)
 {
     return frames[i].getProjectedVertexAreas();
 }
 
-QVector<float> FrameSystem::getVertexMasses(int i)
+const QVector<float> &FrameSystem::getVertexMasses(int i)
 {
     return frames[i].getVertexMasses();
 }
 
-QVector<unsigned int> FrameSystem::getIndices(int i)
+const QVector<unsigned int> &FrameSystem::getIndices(int i)
 {
     return frames[i].getIndices();
 }
-QVector<float> FrameSystem::getAmbients(int i)
+const QVector<float> &FrameSystem::getAmbients(int i)
 {
     return frames[i].getAmbients();
 }
-QVector<float> FrameSystem::getDiffuses(int i)
+const QVector<float> &FrameSystem::getDiffuses(int i)
 {
     return frames[i].getDiffuses();
 }
 
-QVector<float> FrameSystem::getSpeculars(int i)
+const QVector<float> &FrameSystem::getSpeculars(int i)
 {
     return frames[i].getSpeculars();
 }

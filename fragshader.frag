@@ -21,6 +21,7 @@ uniform vec3 LightColor;
 uniform float LightPower;
 uniform float SpecularPower;
 uniform float Smoothness;
+uniform float AmbientPower;
 
 void main(){  
         //normal vector in cameraspace from interpolated position using the partial derivatives method
@@ -53,7 +54,7 @@ void main(){
         float cosBeta = dot(n,E);
 
         // Ambient : simulates indirect lighting
-        vec3 AmbientColor = 0.5*colour_ambient;
+        vec3 AmbientColor = AmbientPower*colour_ambient;
          // Diffuse : "color" of the object
         vec3 DiffuseColor = colour_diffuse * LightColor * LightPower * cosTheta / (distance*distance);
         //vec3 DiffuseColor = 0.5*clamp(colour_diffuse * LightColor * LightPower * cosTheta / (distance*distance),vec3(0.0, 0.0, 0.0),colour_diffuse);
