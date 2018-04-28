@@ -48,10 +48,13 @@ public:
     void loadDirectory(QString directoryPath);
     void setUpFrameColors();
     QVector3D getPointsAvgAfterLoading();
+    void scalePointsAfterLoading();
 
     float getMin();
     float getMax();
 
+    float getMinPointCoord(int xyz);
+    float getMaxPointCoord(int xyz);
 
     bool velocityDataExist(){
         return velocity_data_exist;

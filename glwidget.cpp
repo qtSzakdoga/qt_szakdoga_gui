@@ -161,12 +161,14 @@ int GLWidget::loadFrameDirectory(QString directoryName)
     frameSystem.loadDirectory(directoryName);
     setColorMode(frameSystem.getColorMode());
 
+
     if(frameSystem.size()>0){
         areFramesLoaded=true;
+        setDrawingTriangles(!frameSystem.preferDrawingPoints());
         allocateBuffers();
         QVector3D centerPoint=frameSystem.getPointsAvgAfterLoading();
         camera.setLookAtPoint(centerPoint);
-        setLightPosition(centerPoint + QVector3D(0,10,0));
+        setLightPosition(centerPoint + QVector3D(2,10,2));
     }
     else {
         areFramesLoaded=false;
@@ -631,7 +633,6 @@ void GLWidget::paintGL()
     QMatrix4x4 P=camera.P();
     QMatrix4x4 V=camera.V();
     M.setToIdentity();
-    M.scale(100.0f);
 
     m_program->setUniformValue(m_MVPMatrixLoc,P*V*M);
     m_program->setUniformValue(m_VMatrixLoc, V);
@@ -675,7 +676,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
 
 
     if (event->buttons() & Qt::LeftButton) {
-        camera.rotateHorizontal(dx);
+        camera.rotateHorizontal(-dx);
         camera.rotateVertical(dy);
 
     } else if (event->buttons() & Qt::RightButton) {

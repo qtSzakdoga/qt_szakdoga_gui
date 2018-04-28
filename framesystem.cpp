@@ -30,6 +30,7 @@ void FrameSystem::loadDirectory(QString directoryPath)
    frames.squeeze();
    QStringList files = getDirectoryFiles(directoryPath);
 
+   prefer_drawing_points=false;
    if(files.size() == 0){
        velocity_data_exist=false;
        area_data_exist=false;
@@ -54,8 +55,10 @@ void FrameSystem::loadDirectory(QString directoryPath)
            colorMode=SOLID;
        }
        setUpFrameColors();
+       scalePointsAfterLoading();
    }
 }
+
 QVector3D FrameSystem::getPointsAvgAfterLoading()
 {
     if(frames.size() == 0){
@@ -86,6 +89,47 @@ QVector3D FrameSystem::getPointsAvgAfterLoading()
     }
 
     return QVector3D(avgX/count,avgY/count,avgZ/count);
+}
+
+void FrameSystem::scalePointsAfterLoading()
+{
+    QVector<float> t;
+    t << getMaxPointCoord(0)-getMinPointCoord(0);
+    t << getMaxPointCoord(1)-getMinPointCoord(1);
+    t << getMaxPointCoord(2)-getMinPointCoord(2);
+
+    qDebug() << "x:" << t[0];
+    qDebug() << "y:" << t[1];
+    qDebug() << "z:" << t[2];
+//    float avg=0;
+//    for(auto e : t){
+//        avg+=e;
+//    }
+//    avg/=3.0f;
+//    qDebug() << "avg:" << avg;
+
+    float maxCoordinateDistance=*std::max_element(t.constBegin(),t.constEnd());
+//    qDebug() << "max distance:" << maxCoordinateDistance;
+    float scale=26.0f/maxCoordinateDistance;
+//    qDebug() << "scale:" << scale;
+    for(int i=0; i<frames.size(); i++){
+        frames[i].scalePointsAfterLoading(scale);
+    }
+
+
+    t.clear();
+    t.squeeze();
+    t << getMaxPointCoord(0)-getMinPointCoord(0);
+    t << getMaxPointCoord(1)-getMinPointCoord(1);
+    t << getMaxPointCoord(2)-getMinPointCoord(2);
+
+    qDebug() << "new x:" << t[0];
+    qDebug() << "new y:" << t[1];
+    qDebug() << "new z:" << t[2];
+
+    maxCoordinateDistance=*std::max_element(t.constBegin(),t.constEnd());
+    qDebug() <<"new max distance:" << maxCoordinateDistance;
+
 }
 
 float FrameSystem::getMin()
@@ -122,6 +166,36 @@ float FrameSystem::getMax()
     }
 
     return max;
+}
+
+float FrameSystem::getMinPointCoord(int xyz)
+{
+    if(frames.size() == 0)return 0;
+
+    float min=frames[0].getMinPointCoord(xyz);
+    for(int i=1; i<frames.size();i++){
+        float actual=frames[i].getMinPointCoord(xyz);
+        if(actual < min){
+            min=actual;
+        }
+    }
+    return min;
+
+}
+
+float FrameSystem::getMaxPointCoord(int xyz)
+{
+    if(frames.size() == 0)return 0;
+
+    float max=frames[0].getMaxPointCoord(xyz);
+    for(int i=1; i<frames.size();i++){
+        float actual=frames[i].getMaxPointCoord(xyz);
+        if(actual > max){
+            max=actual;
+        }
+    }
+    return max;
+
 }
 
 QStringList FrameSystem::getDirectoryFiles(QString directoryPath)

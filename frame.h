@@ -41,6 +41,9 @@ public:
         return area_data_exist;
     }
 
+    float getMinPointCoord(int xyz);
+    float getMaxPointCoord(int xyz);
+
     float getMin(ColorMode mode);
     float getMax(ColorMode mode);
 
@@ -76,6 +79,7 @@ public:
     const QVector<unsigned int> &getIndices(){
         return indices;
     }
+    void scalePointsAfterLoading(float scale);
 
     int getPointsSize(){
         return points.size();

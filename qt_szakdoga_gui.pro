@@ -6,6 +6,8 @@
 
 QT       += core gui
 
+#CONFIG += c++11 console
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = qt_szakdoga_gui
@@ -27,7 +29,6 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     camera.cpp \
-    camerawidget.cpp \
     glwidget.cpp \
     frame.cpp \
     framereader.cpp \

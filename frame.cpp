@@ -49,6 +49,35 @@ Frame::Frame(QString fileName)
 
 }
 
+float Frame::getMinPointCoord(int xyz)
+{
+    if(points.size()==0){
+        return 0;
+    }
+
+    float min=points[xyz];
+    for(int i=xyz+3; i<points.size();i+=3){
+        if(points[i]<min){
+            min=points[i];
+        }
+    }
+    return min;
+}
+float Frame::getMaxPointCoord(int xyz)
+{
+    if(points.size()==0){
+        return 0;
+    }
+
+    float max=points[xyz];
+    for(int i=xyz+3; i<points.size();i+=3){
+        if(points[i]>max){
+            max=points[i];
+        }
+    }
+    return max;
+}
+
 float Frame::getMin(ColorMode mode)
 {
     switch(mode) {
@@ -107,6 +136,13 @@ const QVector<float> &Frame::getProjectedVertexAreas()
 const QVector<float> &Frame::getVertexMasses()
 {
     return vertexMasses;
+}
+
+void Frame::scalePointsAfterLoading(float scale)
+{
+    for(int i=0;i<points.size();i++){
+        points[i]=points[i]*scale;
+    }
 }
 
 bool Frame::preferDrawingPoints()

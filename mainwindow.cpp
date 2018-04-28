@@ -30,13 +30,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     frameLabel->setText(QString("Frame: "));
     speedLabel->setText(QString("Fps: "));
-    ui->toolBar_3->addWidget(frameLabel);
-    ui->toolBar_3->addWidget(frameIdxSpinBox);
+    ui->frameCountToolBar->addWidget(frameLabel);
+    ui->frameCountToolBar->addWidget(frameIdxSpinBox);
 
-    ui->toolBar_3->addSeparator();
+    ui->frameCountToolBar->addSeparator();
 
-    ui->toolBar_3->addWidget(speedLabel);
-    ui->toolBar_3->addWidget(fpsSpinBox);
+    ui->frameCountToolBar->addWidget(speedLabel);
+    ui->frameCountToolBar->addWidget(fpsSpinBox);
 
     connect(frameIdxSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),  ui->glWidget, &GLWidget::setFrameIdx);
     connect(ui->glWidget, &GLWidget::frameIdxChanged, frameIdxSpinBox,&QSpinBox::setValue);
@@ -49,7 +49,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuView->addAction(ui->cameraDock->toggleViewAction());
     ui->menuView->addAction(ui->lightsDock->toggleViewAction());
     ui->menuView->addAction(ui->materialDock->toggleViewAction());
-
+    ui->menuView->addSeparator();
+    ui->menuView->addAction(ui->loadFileToolbar->toggleViewAction());
+    ui->menuView->addAction(ui->frameCountToolBar->toggleViewAction());
 
     ui->solidColorWidget->setVisible(true);
     ui->startEndColorWidget->setVisible(false);
