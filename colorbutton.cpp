@@ -45,7 +45,7 @@ void ColorButton::paintEvent(QPaintEvent *event)
     painter.drawRect(rect);
 }
 
-void ColorButton::resizeEvent(QResizeEvent *event)
+void ColorButton::resizeEvent(QResizeEvent *)
 {
     this->resize(this->height(), this->height());
 }

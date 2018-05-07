@@ -109,8 +109,8 @@
   <widget class="QDockWidget" name="materialDock">
    <property name="minimumSize">
     <size>
-     <width>10</width>
-     <height>10</height>
+     <width>179</width>
+     <height>434</height>
     </size>
    </property>
    <property name="windowTitle">
@@ -406,8 +406,8 @@
   <widget class="QDockWidget" name="cameraDock">
    <property name="minimumSize">
     <size>
-     <width>10</width>
-     <height>10</height>
+     <width>154</width>
+     <height>292</height>
     </size>
    </property>
    <property name="windowTitle">
@@ -580,8 +580,8 @@
   <widget class="QDockWidget" name="lightsDock">
    <property name="minimumSize">
     <size>
-     <width>10</width>
-     <height>10</height>
+     <width>173</width>
+     <height>364</height>
     </size>
    </property>
    <property name="windowTitle">
@@ -830,7 +830,7 @@
    </property>
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/Button-Close-icon.png</normaloff>:/images/images/Button-Close-icon.png</iconset>
+     <normaloff>:/images/Button-Close-icon.png</normaloff>:/images/Button-Close-icon.png</iconset>
    </property>
    <property name="text">
     <string>Quit</string>
@@ -845,7 +845,7 @@
   <action name="actionAbout">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/help.bmp</normaloff>:/images/images/help.bmp</iconset>
+     <normaloff>:/images/help.bmp</normaloff>:/images/help.bmp</iconset>
    </property>
    <property name="text">
     <string>About</string>
@@ -857,7 +857,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/folder-open-icon.png</normaloff>:/images/images/folder-open-icon.png</iconset>
+     <normaloff>:/images/folder-open-icon.png</normaloff>:/images/folder-open-icon.png</iconset>
    </property>
    <property name="text">
     <string>Open file</string>
@@ -866,7 +866,7 @@
   <action name="actionplay">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/play.png</normaloff>:/images/images/play.png</iconset>
+     <normaloff>:/images/play.png</normaloff>:/images/play.png</iconset>
    </property>
    <property name="text">
     <string>play</string>
@@ -875,7 +875,7 @@
   <action name="actionstop">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/stop.png</normaloff>:/images/images/stop.png</iconset>
+     <normaloff>:/images/stop.png</normaloff>:/images/stop.png</iconset>
    </property>
    <property name="text">
     <string>stop</string>
@@ -884,7 +884,7 @@
   <action name="actionpause">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/pause.png</normaloff>:/images/images/pause.png</iconset>
+     <normaloff>:/images/pause.png</normaloff>:/images/pause.png</iconset>
    </property>
    <property name="text">
     <string>pause</string>
@@ -893,7 +893,7 @@
   <action name="actionnext">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/next.png</normaloff>:/images/images/next.png</iconset>
+     <normaloff>:/images/next.png</normaloff>:/images/next.png</iconset>
    </property>
    <property name="text">
     <string>next</string>
@@ -902,7 +902,7 @@
   <action name="actionprev">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/prev.png</normaloff>:/images/images/prev.png</iconset>
+     <normaloff>:/images/prev.png</normaloff>:/images/prev.png</iconset>
    </property>
    <property name="text">
     <string>previous</string>
@@ -914,7 +914,7 @@
    </property>
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/replay.png</normaloff>:/images/images/replay.png</iconset>
+     <normaloff>:/images/replay.png</normaloff>:/images/replay.png</iconset>
    </property>
    <property name="text">
     <string>replay</string>
