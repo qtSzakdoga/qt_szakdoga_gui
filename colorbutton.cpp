@@ -35,7 +35,7 @@ void ColorButton::paintEvent(QPaintEvent *event)
 {
     QPushButton::paintEvent(event);
 
-    int colorPadding = 5;
+    int colorPadding = 3;
 
     QRect rect = event->rect();
     QPainter painter( this );
@@ -43,4 +43,9 @@ void ColorButton::paintEvent(QPaintEvent *event)
     painter.setPen("#CECECE");
     rect.adjust(colorPadding, colorPadding, -1-colorPadding, -1-colorPadding);
     painter.drawRect(rect);
+}
+
+void ColorButton::resizeEvent(QResizeEvent *event)
+{
+    this->resize(this->height(), this->height());
 }

@@ -12,7 +12,10 @@ FrameSystem::FrameSystem():
     colorMode(SOLID),
     solidColor(0,0,0),
     startColor(0,0,0),
-    endColor(0,0,0)
+    endColor(0,0,0),
+    prefer_drawing_points(false),
+    velocity_data_exist(false),
+    area_data_exist(false)
 {
 
 }

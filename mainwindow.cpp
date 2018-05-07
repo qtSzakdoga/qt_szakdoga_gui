@@ -53,9 +53,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuView->addAction(ui->loadFileToolbar->toggleViewAction());
     ui->menuView->addAction(ui->frameCountToolBar->toggleViewAction());
 
-    ui->solidColorWidget->setVisible(true);
-    ui->startEndColorWidget->setVisible(false);
+    ui->solidColorButton->setVisible(true);
+    ui->solidColorLabel->setVisible(true);
+    ui->startColorLabel->setVisible(false);
+    ui->startColorButton->setVisible(false);
+    ui->endColorButton->setVisible(false);
+    ui->endColorLabel->setVisible(false);
 
+    ui->materialColoringComboBox->setAvailableColorModes(true,
+                                                         ui->glWidget->velocityDataExist(),
+                                                         ui->glWidget->areaDataExist()
+                                                         );
     ui->glWidget->updateSignal();
 }
 
@@ -153,12 +161,22 @@ void MainWindow::on_actionreplay_triggered()
 void MainWindow::on_materialColoringComboBox_colorModeChanged(ColorMode mode)
 {
     if(mode == SOLID){
-        ui->solidColorWidget->setVisible(true);
-        ui->startEndColorWidget->setVisible(false);
+        ui->solidColorButton->setVisible(true);
+        ui->solidColorLabel->setVisible(true);
+        ui->startColorLabel->setVisible(false);
+        ui->startColorButton->setVisible(false);
+        ui->endColorButton->setVisible(false);
+        ui->endColorLabel->setVisible(false);
+
     }
     else{
-         ui->solidColorWidget->setVisible(false);
-         ui->startEndColorWidget->setVisible(true);
+        ui->solidColorButton->setVisible(false);
+        ui->solidColorLabel->setVisible(false);
+        ui->startColorLabel->setVisible(true);
+        ui->startColorButton->setVisible(true);
+        ui->endColorButton->setVisible(true);
+        ui->endColorLabel->setVisible(true);
+
     }
     ui->glWidget->setColorMode(mode);
 }
@@ -166,12 +184,20 @@ void MainWindow::on_materialColoringComboBox_colorModeChanged(ColorMode mode)
 void MainWindow::on_glWidget_colorModeChanged(ColorMode mode)
 {
     if(mode == SOLID){
-        ui->solidColorWidget->setVisible(true);
-        ui->startEndColorWidget->setVisible(false);
+        ui->solidColorButton->setVisible(true);
+        ui->solidColorLabel->setVisible(true);
+        ui->startColorLabel->setVisible(false);
+        ui->startColorButton->setVisible(false);
+        ui->endColorButton->setVisible(false);
+        ui->endColorLabel->setVisible(false);
     }
     else{
-         ui->solidColorWidget->setVisible(false);
-         ui->startEndColorWidget->setVisible(true);
+        ui->solidColorButton->setVisible(false);
+        ui->solidColorLabel->setVisible(false);
+        ui->startColorLabel->setVisible(true);
+        ui->startColorButton->setVisible(true);
+        ui->endColorButton->setVisible(true);
+        ui->endColorLabel->setVisible(true);
     }
 
     ui->materialColoringComboBox->setColorMode(mode);

@@ -127,12 +127,12 @@ GLWidget::~GLWidget()
 
 QSize GLWidget::minimumSizeHint() const
 {
-    return QSize(50, 50);
+    return QSize(20, 20);
 }
 
 QSize GLWidget::sizeHint() const
 {
-    return QSize(400, 400);
+    return QSize(100, 100);
 }
 
 void GLWidget::updateSignal()
@@ -168,7 +168,12 @@ int GLWidget::loadFrameDirectory(QString directoryName)
         allocateBuffers();
         QVector3D centerPoint=frameSystem.getPointsAvgAfterLoading();
         camera.setLookAtPoint(centerPoint);
-        setLightPosition(centerPoint + QVector3D(2,10,2));
+
+//        int rndx = rand() % 11 - 5;
+//        int rndy= rand() % 11 - 5;
+//        int rndz=rand() % 11 - 5;
+
+        setLightPosition(centerPoint + QVector3D(2,10,-4));
     }
     else {
         areFramesLoaded=false;
