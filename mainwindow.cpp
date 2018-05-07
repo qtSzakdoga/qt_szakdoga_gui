@@ -3,6 +3,9 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QGuiApplication>
+#include <QScreen>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -52,6 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuView->addSeparator();
     ui->menuView->addAction(ui->loadFileToolbar->toggleViewAction());
     ui->menuView->addAction(ui->frameCountToolBar->toggleViewAction());
+    ui->menuView->addAction(ui->mediControlToolBar->toggleViewAction());
 
     ui->solidColorButton->setVisible(true);
     ui->solidColorLabel->setVisible(true);
@@ -65,6 +69,13 @@ MainWindow::MainWindow(QWidget *parent) :
                                                          ui->glWidget->areaDataExist()
                                                          );
     ui->glWidget->updateSignal();
+
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int h = screenGeometry.height();
+    int w = screenGeometry.width();
+
+    this->resize(5*w/8,h/2);
 }
 
 

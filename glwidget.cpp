@@ -53,6 +53,8 @@
 #include <QOpenGLShaderProgram>
 #include <QCoreApplication>
 #include <QTimer>
+#include <QGuiApplication>
+#include <QScreen>
 #include <math.h>
 #include <qDebug>
 
@@ -127,12 +129,22 @@ GLWidget::~GLWidget()
 
 QSize GLWidget::minimumSizeHint() const
 {
-    return QSize(20, 20);
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int height = screenGeometry.height();
+    int width = screenGeometry.width();
+
+    return QSize(width/8, height/8);
 }
 
 QSize GLWidget::sizeHint() const
 {
-    return QSize(100, 100);
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int height = screenGeometry.height();
+    int width = screenGeometry.width();
+
+    return QSize(width/8, height/8);
 }
 
 void GLWidget::updateSignal()
